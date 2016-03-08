@@ -8,10 +8,12 @@
     tools:context="com.example.activity.inkpad.NoteListScreenActivity">
 
     <!--<include layout="@layout/content_note_list_screen" />-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#efe8cb">
+        android:background="#efe8cb"
+        android:orientation="vertical"
+        android:weightSum="12">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -19,7 +21,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".MainActivity"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_weight="11"
+        >
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,9 +32,8 @@
         </android.support.v7.widget.Toolbar>
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="382dp"
-            android:id="@+id/lvNote"
-            android:layout_weight="0.39">
+            android:layout_height="match_parent"
+            android:id="@+id/lvNote">
         </ListView>
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
@@ -39,11 +41,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="5dp"
         android:src="@drawable/ic_add_ic"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_weight="1"
         />
-    </RelativeLayout>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
 

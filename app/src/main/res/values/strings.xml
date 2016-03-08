@@ -3,4 +3,5 @@
     <string name="title_search">Search</string>
     <string name="title_reload">Reload</string>
     <string name="title_activity_note_list_screen">NoteListScreenActivity</string>
+    <string name="message">Are you sure you want to delete this note?</string>
 </resources>
