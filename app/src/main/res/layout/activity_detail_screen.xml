@@ -43,27 +43,31 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/btnBack"
-            android:src="@drawable/ic_action_icon_back"/>
+            android:src="@drawable/ic_action_icon_back"
+            android:background="@null"/>
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/btnDelete"
-            android:src="@drawable/ic_action_trash"/>
+            android:src="@drawable/ic_action_trash"
+            android:background="@null"/>
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/btnExport"
-            android:src="@drawable/ic_action_icon_share"/>
+            android:src="@drawable/ic_action_icon_share"
+            android:background="@null"/>
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/btnAdd"
-            android:src="@drawable/ic_action_add_ic"/>
+            android:src="@drawable/ic_action_add_ic"
+            android:background="@null"/>
     </LinearLayout>
 </RelativeLayout>

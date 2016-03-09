@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class DetailNoteScreenActivity extends AppCompatActivity implements View.OnClickListener {
     Toolbar detailToolbar;
@@ -97,8 +97,10 @@ public class DetailNoteScreenActivity extends AppCompatActivity implements View.
     String time = "";
 
     private String getTime(){
-        Calendar c = Calendar.getInstance();
-        String timeUpdate = c.HOUR_OF_DAY + ":" + c.MINUTE;
+//        Calendar c = Calendar.getInstance();
+//        String timeUpdate = c.HOUR_OF_DAY + ":" + c.MINUTE;
+        Date d = new Date();
+        String timeUpdate = String.valueOf(d.getHours()) + ":" + String.valueOf(d.getMinutes());
         return timeUpdate;
     }
     @Override
@@ -131,6 +133,8 @@ public class DetailNoteScreenActivity extends AppCompatActivity implements View.
         }
     }
 
+    Note n = new Note();
+
     NoteHelper noteHelper = new NoteHelper(this);
 
     // the class insert or update when press button back
@@ -138,9 +142,10 @@ public class DetailNoteScreenActivity extends AppCompatActivity implements View.
         // get content, timeUpdate and title
         time = getTime();
         content =  edtContent.getText().toString();
+        content = content.trim();
         title = edtTitle.getText().toString();
+        title = title.trim();
 
-        Note n = new Note();
         n.setName(title);
         n.setTime(time);
         n.setContent(content);
@@ -202,19 +207,24 @@ public class DetailNoteScreenActivity extends AppCompatActivity implements View.
         dialog.show();
     }
 
+
     public void share() {
         Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
-        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, null);
-//        shareIntent.setType("note/*");
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, edtTitle.getText().toString());
+        shareIntent.putExtra(Intent.EXTRA_TEXT, edtContent.getText().toString());
         startActivity(Intent.createChooser(shareIntent, "Share InkPad note"));
     }
 
     // get first line in content
     public String getFirstParagraph(String content) {
-//        String titleTemp = content.substring(0, 17);
-        String[] lines = content.split("\\n");
-        String titleTemp = lines[0];
+        String titleTemp = "";
+        if (content.length() > 20) {
+            titleTemp = content.substring(0, 20);
+        } else {
+            titleTemp = content;
+        }
         return titleTemp;
     }
 }

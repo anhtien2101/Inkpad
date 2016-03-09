@@ -34,27 +34,40 @@ public class NoteAdapter extends ArrayAdapter {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
+                charSequence = charSequence.toString().trim();
                 // create a FilterResult
                 FilterResults filterResults = new FilterResults();
                 // create a list temp to show when search
-                List<Note> listTemp = new ArrayList<>();
-                String text = charSequence.toString().toUpperCase();
-                for (Note s : noteOriginal) {
-                    if (s.getName().toUpperCase().contains(text)) {
-                        listTemp.add(s);
+                if (!charSequence.equals("")) {
+                    List<Note> listTemp = new ArrayList<>();
+                    String text = charSequence.toString().toUpperCase();
+                    for (Note s : noteOriginal) {
+                        if (s.getName().toUpperCase().contains(text)) {
+                            listTemp.add(s);
+                        }
                     }
+                    filterResults.values = listTemp;
                 }
-                filterResults.values = listTemp;
                 return filterResults;
             }
             // when filter compelete, update notes to show on listview
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 notes.clear();
-                notes.addAll((Collection<? extends Note>) filterResults.values);
+                if (filterResults.values != null) {
+                    notes.addAll((Collection<? extends Note>) filterResults.values);
+                } else {
+                    notes.addAll(noteOriginal);
+                }
                 notifyDataSetChanged();
             }
         };
+    }
+
+    public void reload() {
+        notes.clear();
+        notes.addAll(noteOriginal);
+        notifyDataSetChanged();
     }
 
     @Override

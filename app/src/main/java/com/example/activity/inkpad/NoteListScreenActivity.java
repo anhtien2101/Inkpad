@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NoteListScreenActivity extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class NoteListScreenActivity extends AppCompatActivity {
     SearchView mSearchview;
     public static final int MODE_INSERT = 0;
     public static final int MODE_UPDATE = 1;
+    List<Note> notes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,7 @@ public class NoteListScreenActivity extends AppCompatActivity {
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fabCorlor)));
 
         final NoteHelper noteHelper = new NoteHelper(this);
-        final List<Note> notes = noteHelper.getAll();
+        notes = noteHelper.getAll();
 
         adapter = new NoteAdapter(this, R.layout.row_note, notes);
         lvNote.setAdapter(adapter);
@@ -100,4 +103,14 @@ public class NoteListScreenActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_reload) {
+            // reload
+            Toast.makeText(NoteListScreenActivity.this, "RELOAD", Toast.LENGTH_SHORT).show();
+            adapter.reload();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
