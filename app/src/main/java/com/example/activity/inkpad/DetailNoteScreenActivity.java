@@ -170,16 +170,13 @@ public class DetailNoteScreenActivity extends AppCompatActivity implements View.
             // set id for Note n
             n.setId(noteId);
             if (title.equals("") && content.equals("")) { // title and content are blank
-                // delete current selected
                 noteHelper.delete(noteId);
                 Log.d("UPDATE", "update delete");
             } else if (title.equals("") && !content.equals("")) { //title balnk and content is not blank
-                // save with title is first paragraph of content
                 n.setName(getFirstParagraph(content));
                 noteHelper.update(n);
                 Log.d("UPDATE", "update with title first");
             }  else { //title not blank, content blank OR title and content are not blank
-                // save normaly
                 noteHelper.update(n);
                 Log.d("UPDATE", "update normal");
             }

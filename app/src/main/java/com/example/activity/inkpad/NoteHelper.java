@@ -53,7 +53,8 @@ public class NoteHelper {
             if (cursor.moveToFirst()) {
                 do {
                     // add a note get in a line into list of note
-                    notes.add(fetch(cursor));
+//                    notes.add(fetch(cursor));
+                    notes.add(0, fetch(cursor));
                 } while (cursor.moveToNext());
             }
         }

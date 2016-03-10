@@ -64,11 +64,6 @@ public class NoteAdapter extends ArrayAdapter {
         };
     }
 
-    public void reload() {
-        notes.clear();
-        notes.addAll(noteOriginal);
-        notifyDataSetChanged();
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
